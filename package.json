@@ -1,0 +1,19 @@
+{
+  "name": "my_portofolio",
+  "version": "1.0.0",
+  "description": "Thanks for downloading this theme!",
+  "main": "index.html",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "http-server": "^0.12.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server --port 9000"
+  },
+  "author": "",
+  "license": "ISC"
+}
