@@ -1,5 +1,49 @@
 jQuery(document).ready(function( $ ) {
 
+  fetchBlogs();
+  
+  function fetchBlogs() {
+    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@anjulashanaka')
+    .then((res) => res.json())
+    .then((data) => {
+        // Fillter the array
+        const res = data.items //This is an array with the content. No feed, no info about author etc..
+        const posts = res.filter(item => item.categories.length > 0) // That's the main trick* !
+        
+        function toText(node) {
+          let tag = document.createElement('div')
+          tag.innerHTML = node
+          node = tag.innerText
+          return node
+       }
+        function shortenText(text,startingPoint ,maxLength) {
+        return text.length > maxLength?
+           text.slice(startingPoint, maxLength):
+           text
+       }
+  
+       let output = '';
+        posts.forEach((item) => {
+           output += `
+           <div class="col-md-6 col-lg-4 pt-5">
+        <div class="block-blog text-left">
+          <a href="${item.link}" target="_blank"><img src="${item.thumbnail}" alt="img" style="width: 350px;height: 200px;
+object-fit: cover;"></a>
+          <div class="content-blog">
+            <h4><a href="${item.link}" target="_blank">${item.title}</a></h4>
+            <p>${shortenText(toText(item.content),0, 300)+ '...'}</p>
+            <span>${shortenText(item.pubDate,0 ,10)}</span>
+            <a class="pull-right readmore" href="${item.link}" target="_blank">read more</a>
+          </div>
+        </div>
+      </div>`
+        })
+        document.querySelector('.blog__slider').innerHTML = output
+     }
+     ) 
+
+  }
+
   $(window).scroll(function () {
     var height = $(window).height();
     var scroll = $(window).scrollTop();
