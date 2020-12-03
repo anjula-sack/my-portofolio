@@ -632,17 +632,17 @@ body.mobile-nav-active #mobile-nav-toggle i {
   color: #71c55d;
 }
 
-/* About Us Section
+/* About Section
 --------------------------------*/
-#about-us img {
+#about img {
   max-width: 100%;
 }
 
-#about-us .about-content {
+#about .about-content {
   padding-top: 60px;
 }
 
-#about-us .about-content h2 {
+#about .about-content h2 {
   color: #252525;
   font-family: "roboto";
   font-size: 39px;
@@ -652,45 +652,45 @@ body.mobile-nav-active #mobile-nav-toggle i {
   text-transform: capitalize;
 }
 
-#about-us .about-content span {
+#about .about-content span {
   font-weight: 700;
   padding-right: 10px;
   text-transform: uppercase;
 }
 
-#about-us .about-content ul li {
+#about .about-content ul li {
   line-height: 36px;
 }
 
-#about-us .about-content ul li .fa {
+#about .about-content ul li .fa {
   padding-right: 20px;
 }
 
-/* Features Section
+/* skills Section
 --------------------------------*/
-#features {
+#skills {
   display: inline-block;
   height: 100%;
   width: 100%;
 }
 
-#features .feature-block {
+#skills .feature-block {
   background: #fff none repeat scroll 0 0;
   padding: 30px 20px;
   margin-bottom: 30px;
   transition: all 0.5s ease-in-out 0s;
 }
 
-#features .feature-block:hover {
+#skills .feature-block:hover {
   box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
   transition: all 0.5s ease-in-out 0s;
 }
 
-#features .feature-block h4 {
+#skills .feature-block h4 {
   margin-bottom: 20px;
 }
 
-#features .feature-block p {
+#skills .feature-block p {
   margin-bottom: 0;
 }
 
