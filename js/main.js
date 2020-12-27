@@ -1,30 +1,26 @@
-jQuery(document).ready(function( $ ) {
+function fetchBlogs() {
+  fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@anjulashanaka')
+      .then((res) => res.json())
+      .then((data) => {
+            // Fillter the array
+            const res = data.items //This is an array with the content. No feed, no info about author etc..
+            const posts = res.filter(item => item.categories.length > 0) // That's the main trick* !
 
-  fetchBlogs();
-  
-  function fetchBlogs() {
-    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@anjulashanaka')
-    .then((res) => res.json())
-    .then((data) => {
-        // Fillter the array
-        const res = data.items //This is an array with the content. No feed, no info about author etc..
-        const posts = res.filter(item => item.categories.length > 0) // That's the main trick* !
-        
-        function toText(node) {
-          let tag = document.createElement('div')
-          tag.innerHTML = node
-          node = tag.innerText
-          return node
-       }
-        function shortenText(text,startingPoint ,maxLength) {
-        return text.length > maxLength?
-           text.slice(startingPoint, maxLength):
-           text
-       }
-  
-       let output = '';
-        posts.forEach((item) => {
-           output += `
+            function toText(node) {
+              let tag = document.createElement('div')
+              tag.innerHTML = node
+              node = tag.innerText
+              return node
+            }
+            function shortenText(text,startingPoint ,maxLength) {
+              return text.length > maxLength?
+                  text.slice(startingPoint, maxLength):
+                  text
+            }
+
+            let output = '';
+            posts.forEach((item) => {
+              output += `
            <div class="col-md-6 col-lg-4 pt-5">
         <div class="block-blog text-left">
           <a href="${item.link}" target="_blank"><img src="${item.thumbnail}" alt="img" style="width: 350px;height: 200px;
@@ -37,12 +33,16 @@ object-fit: cover;"></a>
           </div>
         </div>
       </div>`
-        })
-        document.querySelector('.blog__slider').innerHTML = output
-     }
-     ) 
+            })
+            document.querySelector('.blog__slider').innerHTML = output
+          }
+      )
 
-  }
+}
+
+jQuery(document).ready(function( $ ) {
+
+  fetchBlogs();
 
   $(window).scroll(function () {
     var height = $(window).height();
