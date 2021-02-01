@@ -40,9 +40,46 @@ object-fit: cover;"></a>
 
 }
 
+function httpGet(theUrl) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open("GET", theUrl, false); // false for synchronous request
+  xmlHttp.send(null);
+  return xmlHttp.responseText;
+}
+
 jQuery(document).ready(function( $ ) {
 
   fetchBlogs();
+  const data = JSON.parse(httpGet('https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10' +
+      '&playlistId=PLx4Ro8e0E8S_GmG75brlX1yGbILEiuY7m&key=AIzaSyBTfMNlg_WsL7cMiOIh7XQs0oZqLEkhl2c'));
+
+  let videos = '';
+  data.items.forEach((item) => {
+    videos += `
+            <div class="col-md-4 mb-5">
+        <div class="card video-card shadow youtube-videos mb-4">
+            <img src="${item.snippet.thumbnails.medium.url}"
+                 alt="Rounded image"
+                 class="rounded shadow img-full"/>
+            <div class="card-body">
+                <h6 class="">${item.snippet.title}</h6>
+                <p class="text-muted">${item.snippet.description}</p>
+            </div>
+            <a class="btn btn-onelive position-absolute hover-element rounded-05-rem"
+               style="right: 20px; bottom: 20px"
+               target="_blank"
+               href="https://youtube.com/watch?v=${item.snippet.resourceId.videoId}">
+                <span class="original-content">
+                    <i class="fa fa-play" aria-hidden="true"></i>
+                </span>
+                <span class="content-on-hover">
+                    Watch Now &nbsp;<i class="fa fa-play fa-sm" aria-hidden="true"></i>
+                </span>
+            </a>
+        </div>
+    </div>`
+  })
+  document.querySelector('#youtube-videos').innerHTML = videos
 
   $(window).scroll(function () {
     var height = $(window).height();
