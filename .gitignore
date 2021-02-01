@@ -3,3 +3,4 @@ node_modules/
 .DS_Store
 img/.DS_Store
 img/icons/.DS_Store
+.vscode/
