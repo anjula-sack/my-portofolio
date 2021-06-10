@@ -47,11 +47,17 @@ function httpGet(theUrl) {
   return xmlHttp.responseText;
 }
 
-const fetchYoutubeVideos = (pageToken = 1) => {
-  const data = JSON.parse(httpGet('https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10' +
-    '&playlistId=PLx4Ro8e0E8S_GmG75brlX1yGbILEiuY7m&key=AIzaSyBTfMNlg_WsL7cMiOIh7XQs0oZqLEkhl2c'));
+let nextPageToken = ''
 
+const fetchYoutubeVideos = () => {
+
+  const url = 'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=2' +
+    '&playlistId=PLx4Ro8e0E8S_GmG75brlX1yGbILEiuY7m&key=AIzaSyBTfMNlg_WsL7cMiOIh7XQs0oZqLEkhl2c'
+  const data = JSON.parse(httpGet(nextPageToken ? url + `&pageToken=${nextPageToken}` : url));
+
+  console.log(data.nextPageToken);
   let videos = '';
+  nextPageToken = data.nextPageToken;
   data.items.forEach((item) => {
     videos += `
         <div class="col-md-4 mb-5">
@@ -78,11 +84,15 @@ const fetchYoutubeVideos = (pageToken = 1) => {
 </div>`
   })
   $('#youtube-videos').append(videos)
+
 }
 jQuery(document).ready(function ($) {
 
   fetchBlogs();
   fetchYoutubeVideos();
+
+  const viewMore = `<br /><button class="btn btn-success" onclick="fetchYoutubeVideos()">View More</button>`
+  $('#youtube-videos').append(viewMore)
 
   $(window).scroll(function () {
     var height = $(window).height();
