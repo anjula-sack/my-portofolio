@@ -47,15 +47,16 @@ function httpGet(theUrl) {
   return xmlHttp.responseText;
 }
 
-let nextPageToken = ''
+let nextPageToken = null
 
 const fetchYoutubeVideos = () => {
 
-  const url = 'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=2' +
+  const url = 'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10' +
     '&playlistId=PLx4Ro8e0E8S_GmG75brlX1yGbILEiuY7m&key=AIzaSyBTfMNlg_WsL7cMiOIh7XQs0oZqLEkhl2c'
+
   const data = JSON.parse(httpGet(nextPageToken ? url + `&pageToken=${nextPageToken}` : url));
 
-  console.log(data.nextPageToken);
+  console.log(nextPageToken);
   let videos = '';
   nextPageToken = data.nextPageToken;
   data.items.forEach((item) => {
@@ -91,8 +92,9 @@ jQuery(document).ready(function ($) {
   fetchBlogs();
   fetchYoutubeVideos();
 
-  const viewMore = `<br /><button class="btn btn-success" onclick="fetchYoutubeVideos()">View More</button>`
-  $('#youtube-videos').append(viewMore)
+  if (!nextPageToken) {
+    $('#view-more').hide()
+  }
 
   $(window).scroll(function () {
     var height = $(window).height();
