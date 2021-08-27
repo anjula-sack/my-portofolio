@@ -48,16 +48,25 @@ function httpGet(theUrl) {
 }
 
 let nextPageToken = null
+const fetchYoutubeVideos = async (type) => {
+  let playlistId = 'PLx4Ro8e0E8S_GmG75brlX1yGbILEiuY7m';
+  let section = 'knowledge-sharing-videos';
+  if (type === 'sessions') {
+    playlistId = 'PLx4Ro8e0E8S8A8NpNfLWtelLFnqgeW5pz';
+    section = 'web-development-videos';
+  } else if (type === 'simulations') {
+    playlistId = 'PLx4Ro8e0E8S90j80OTgEgjTQSRGLixP5p';
+    section = 'simulation-videos';
+  }
 
-const fetchYoutubeVideos = () => {
-
+  console.log(section);
   const url = 'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10' +
-    '&playlistId=PLx4Ro8e0E8S_GmG75brlX1yGbILEiuY7m&key=AIzaSyBTfMNlg_WsL7cMiOIh7XQs0oZqLEkhl2c'
-
+    `&playlistId=${playlistId}&key=AIzaSyBTfMNlg_WsL7cMiOIh7XQs0oZqLEkhl2c`
+    
   const data = JSON.parse(httpGet(nextPageToken ? url + `&pageToken=${nextPageToken}` : url));
 
   let videos = '';
-  nextPageToken = data.nextPageToken;
+  nextPageToken = await data.nextPageToken;
   data.items.forEach((item) => {
     videos += `
         <div class="col-md-4 mb-5">
@@ -83,19 +92,20 @@ const fetchYoutubeVideos = () => {
     </div>
 </div>`
   })
-  $('#youtube-videos').append(videos)
+  $(`#${section}`).append(videos)
 
+  if (!data.nextPageToken) {
+    $(`#${section}-view-more`).hide()
+  }
 }
 
 
 jQuery(document).ready(function ($) {
 
   fetchBlogs();
-  fetchYoutubeVideos();
-
-  if (!nextPageToken) {
-    $('#view-more').hide()
-  }
+  fetchYoutubeVideos('sessions');
+  fetchYoutubeVideos('simulations');
+  fetchYoutubeVideos('knowledge');
 
   $(window).scroll(function () {
     var height = $(window).height();

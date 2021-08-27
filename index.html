@@ -89,6 +89,7 @@
           <li><a href="#projects">Projects</a></li>
           <li><a href="#experience">Experience</a></li>
           <li><a href="#knowledge">Knowledge Sharing</a></li>
+          <li><a href="#simulations">Simulations</a></li>
           <!-- <li class="menu-has-children"><a href="">Drop Down</a>
                   <ul>
                     <li><a href="#">Drop Down 1</a></li>
@@ -693,10 +694,10 @@ Blog Section
     </div>
 
     <div class="container">
-      <div id="youtube-videos" class="row">
+      <div id="knowledge-sharing-videos" class="row">
       </div>
       <div class="d-flex justify-content-center">
-        <button id="view-more" class="btn btn-success" onclick="fetchYoutubeVideos()">View More</button>
+        <button id="knowledge-sharing-videos-view-more" class="btn btn-success" onclick="fetchYoutubeVideos('knowledge')">View More</button>
       </div>
     </div>
   </section>
@@ -706,7 +707,7 @@ Blog Section
     <div class="container">
       <div class="section-title text-center">
 
-        <h2>Latest knowledge sharing sessions</h2>
+        <h2>Web Development Sessions</h2>
         <p class="separator">As a software engineer at SEF dev team. We have knowledge sharing sessions. These are the
           sessions I did.</p>
       </div>
@@ -716,7 +717,25 @@ Blog Section
       <div id="web-development-videos" class="row">
       </div>
       <div class="d-flex justify-content-center">
-        <button id="view-more" class="btn btn-success" onclick="fetchYoutubeVideos()">View More</button>
+        <button id="web-development-videos-view-more" class="btn btn-success" onclick="fetchYoutubeVideos('sessions')">View More</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="simulations" class="padd-section wow fadeInUp">
+
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>Simulations</h2>
+        <p class="separator">These are some of the simulations I tried recreating using Unity Game Engine</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="simulation-videos" class="row">
+      </div>
+      <div class="d-flex justify-content-center">
+        <button id="simulation-videos-view-more" class="btn btn-success" onclick="fetchYoutubeVideos('simulations')">View More</button>
       </div>
     </div>
   </section>
