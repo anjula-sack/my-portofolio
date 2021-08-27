@@ -56,7 +56,6 @@ const fetchYoutubeVideos = () => {
 
   const data = JSON.parse(httpGet(nextPageToken ? url + `&pageToken=${nextPageToken}` : url));
 
-  console.log(nextPageToken);
   let videos = '';
   nextPageToken = data.nextPageToken;
   data.items.forEach((item) => {
@@ -87,6 +86,8 @@ const fetchYoutubeVideos = () => {
   $('#youtube-videos').append(videos)
 
 }
+
+
 jQuery(document).ready(function ($) {
 
   fetchBlogs();
