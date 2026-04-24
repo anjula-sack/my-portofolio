@@ -4,3 +4,4 @@ node_modules/
 img/.DS_Store
 img/icons/.DS_Store
 .vscode/
+.superpowers/
