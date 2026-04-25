@@ -128,6 +128,23 @@ body {
 /* Timeline */
 .timeline-item { border-bottom: 1px solid var(--border); }
 .timeline-item:last-child { border-bottom: none; }
+.timeline-grid { grid-template-columns: 1fr 3fr; }
+
+/* Bullet list items */
+.bullet-item {
+  position: relative;
+  padding-left: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+.bullet-item::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  top: 0.125rem;
+  color: var(--accent);
+  font-size: 0.75rem;
+}
 
 /* Badge current */
 .badge-current {
