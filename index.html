@@ -70,6 +70,37 @@
 </head>
 <body class="bg-bg text-slate-50">
 
+  <!-- NAV -->
+  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-6 md:px-10 bg-bg/80 backdrop-blur-md border-b border-slate-800">
+    <a href="#hero" class="font-black text-lg text-slate-50 no-underline">
+      anjula<span class="text-accent">.</span>
+    </a>
+    <ul id="nav-links" class="flex gap-6 list-none">
+      <li><a href="#experience" class="text-slate-400 hover:text-accent text-sm font-mono transition-colors no-underline">experience</a></li>
+      <li><a href="#skills"     class="text-slate-400 hover:text-accent text-sm font-mono transition-colors no-underline">skills</a></li>
+      <li><a href="#projects"   class="text-slate-400 hover:text-accent text-sm font-mono transition-colors no-underline">projects</a></li>
+      <li><a href="#education"  class="text-slate-400 hover:text-accent text-sm font-mono transition-colors no-underline">education</a></li>
+      <li><a href="#blog"       class="text-slate-400 hover:text-accent text-sm font-mono transition-colors no-underline">blog</a></li>
+      <li><a href="#knowledge"  class="text-slate-400 hover:text-accent text-sm font-mono transition-colors no-underline">videos</a></li>
+    </ul>
+    <button id="hamburger" class="flex flex-col gap-1.5 p-1 cursor-pointer bg-transparent border-none" aria-label="Open menu">
+      <span class="w-5 h-0.5 bg-slate-400 block"></span>
+      <span class="w-5 h-0.5 bg-slate-400 block"></span>
+      <span class="w-5 h-0.5 bg-slate-400 block"></span>
+    </button>
+  </nav>
+
+  <div id="mobile-overlay"></div>
+
+  <div id="mobile-menu">
+    <a href="#experience" class="mobile-nav-link">experience</a>
+    <a href="#skills"     class="mobile-nav-link">skills</a>
+    <a href="#projects"   class="mobile-nav-link">projects</a>
+    <a href="#education"  class="mobile-nav-link">education</a>
+    <a href="#blog"       class="mobile-nav-link">blog</a>
+    <a href="#knowledge"  class="mobile-nav-link">videos</a>
+  </div>
+
   <!-- sections added in Tasks 2–10 -->
 
   <script src="js/main.js"></script>
