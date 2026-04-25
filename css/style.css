@@ -178,6 +178,16 @@ body {
   background: var(--accent-dim);
 }
 
+/* Stack tags (project cards) */
+.stack-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border: 1px solid #334155;
+  border-radius: 4px;
+  padding: 1px 8px;
+}
+
 /* Project cards */
 .project-card {
   background: var(--surface);
