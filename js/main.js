@@ -134,6 +134,10 @@ async function fetchYoutubeVideos(type) {
       if (btn) btn.style.display = 'none';
     }
   } catch {
+    const container = document.getElementById(config[type]?.section);
+    if (container && !container.hasChildNodes()) {
+      container.innerHTML = '<p class="font-mono text-slate-500 text-sm col-span-3">// Could not load videos.</p>';
+    }
     console.error(`Failed to load YouTube playlist: ${type}`);
   }
 }
