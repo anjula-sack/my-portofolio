@@ -72,11 +72,10 @@ function fetchBlogs() {
       container.innerHTML = posts.map(item => {
         const excerpt = item.content.replace(/<[^>]+>/g, '').slice(0, 280) + '…';
         const date    = item.pubDate.slice(0, 10);
+        const thumb   = item.thumbnail && safeUrl(item.thumbnail) !== '#' ? safeUrl(item.thumbnail) : '';
         return `
           <div class="blog-card">
-            <a href="${safeUrl(item.link)}" target="_blank" rel="noopener">
-              <img src="${safeUrl(item.thumbnail)}" alt="${escHtml(item.title)}" loading="lazy">
-            </a>
+            ${thumb ? `<a href="${safeUrl(item.link)}" target="_blank" rel="noopener"><img src="${thumb}" alt="${escHtml(item.title)}" loading="lazy"></a>` : ''}
             <div class="blog-card-body">
               <a class="blog-card-title" href="${safeUrl(item.link)}" target="_blank" rel="noopener">${escHtml(item.title)}</a>
               <p class="blog-card-excerpt">${escHtml(excerpt)}</p>
